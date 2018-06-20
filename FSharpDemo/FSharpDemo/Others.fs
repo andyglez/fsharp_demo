@@ -19,7 +19,13 @@ let rec permutations list =
             | _ -> for item in list do
                         for perm in permutations (Seq.toList(query {for x in list do
                                                                         where (not (item.Equals(x)))
-                                                                        select x})) do//(List.where (fun x -> not (item.Equals(x))) list) do
-                            yield item::perm
-            }
+                                                                        select x})) do yield item::perm }//(List.where (fun x -> not (item.Equals(x))) list) do
 
+let rec combinations k list =
+    seq {
+        match list with
+        | [] | _ when k = 0 -> yield []
+        | _  -> for item in list do
+                    for comb in combinations (k - 1) (Seq.toList(query {for x in list do
+                                                                        where (not (item.Equals(x)))
+                                                                        select x})) do yield item::comb }
