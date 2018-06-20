@@ -5,5 +5,5 @@ open BinaryTree
 [<EntryPoint>]
 let main argv = 
     let tree = Node (10, Leaf 5, Leaf 15)
-    printfn "%A" tree.InOrder
+    printfn "%A" (tree.Add 20).InOrder
     0 // return an integer exit code

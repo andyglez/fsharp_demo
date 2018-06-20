@@ -21,6 +21,7 @@ type BinaryTree<'a when 'a : equality and 'a : comparison> =
                     | Node(v, left, right) when v = value -> Node(v, left, right)
                     | Node(v, left, right) when v > value -> Node(v, left.Add value, right)
                     | Node(v, left, right) when v < value -> Node(v, left, right.Add value)
+                    | tree -> tree
         member this.InOrder =
                 match this with
                     | Nil -> []
